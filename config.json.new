@@ -1,7 +1,10 @@
 {
+  "prefix": "",
   "discord_bot_token": "",
+  "discord_server_id": "",
   "discord_twitch_channel": "",
   "discord_youtube_channel_id":"",
+  "discord_counter_channel_id": "",
   "discord_mentions": {
     "<user>": "<mention role>"
   },
