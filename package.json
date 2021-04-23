@@ -1,0 +1,40 @@
+{
+  "name": "ZYNTXBot",
+  "version": "1.0.0",
+  "description": "this is a small social-media bot for xzyntx only.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "bot": "node bot.js",
+    "twitch": "node twitch.js",
+    "youtube": "node youtube.js",
+    "twitter": "node twitter.js",
+    "production": "concurrently \"npm run bot\" \"npm run youtube\" \"npm run twitter\" \"npm run twitch\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ExXxO/ZYNTXBot.git"
+  },
+  "keywords": [
+    "discord",
+    "twitch",
+    "youtube",
+    "twitter",
+    "bot"
+  ],
+  "author": "Astreon",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "concurrently": "^6.0.2",
+    "discord.js": "^12.5.3",
+    "dotenv": "^8.2.0",
+    "feedparser": "^2.2.10",
+    "fs": "0.0.1-security",
+    "humanize-duration": "^3.25.2",
+    "moment": "^2.29.1",
+    "request": "^2.88.2",
+    "rss-converter": "^1.1.6",
+    "twit": "^2.2.11"
+  }
+}
