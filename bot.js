@@ -4,9 +4,9 @@ const zyntx = new Discord.Client()
 const config = require('./config.json')
 const memberCounter = require('./counters/member-counter')
 
+console.log('[ZYNTX]', 'Botwrapper is spinning up.')
 zyntx.on('ready', () => {
-    console.log('[ZYNTX]', 'Botwrapper is ready')
-
+   
     zyntx.user.setPresence({
         activity: {
             name: 'Bruno hat nen ganz kleinen 🥒',
@@ -15,6 +15,7 @@ zyntx.on('ready', () => {
     })
 
     memberCounter(zyntx)
+    console.log('[ZYNTX]', 'Bot is ready now.')
 })
 
 zyntx.login(config.discord_bot_token)
