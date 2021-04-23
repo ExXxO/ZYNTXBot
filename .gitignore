@@ -1,4 +1,6 @@
 node_modules
 .env
 config.json
-data/*
+data/live-messages
+data/twitch-games
+data/twitch-users-v2
