@@ -1,7 +1,7 @@
 module.exports = {
     name: 'ping',
     description: 'this is a ping request!',
-    execute(message, args){
+    execute(zyntx, message, args){
         message.channel.send('Pong!')
     }
 }

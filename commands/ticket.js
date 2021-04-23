@@ -3,7 +3,7 @@ module.exports = {
     aliases: [],
     permissions: [],
     description: 'open a ticket!',
-    async execute(message, args, cmd, client, discord){
+    async execute(zyntx, message, args, cmd, Discord){
         const channel = await message.guild.channels.create(`ticket: ${message.author.tag}`)
         
         channel.updateOverwrite(message.guild.id, {
