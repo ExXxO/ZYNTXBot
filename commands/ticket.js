@@ -6,7 +6,7 @@ module.exports = {
     permissions: ["VIEW_CHANNEL"],
     description: 'open a ticket!',
     async execute(zyntx, message, cmd, args, Discord){
-        const channel = await message.guild.channels.create(`ticket: ${message.author.tag}`, {
+        const channel = await message.guild.channels.create(`🎫-ticket-${message.author.tag}`, {
           permissionOverwrites: [
             {
               id: zyntx.user,
@@ -15,8 +15,9 @@ module.exports = {
           ]
         });
         
-        //channel.setParent("835467926006005781");
-        
+        //channel.setParent("1337"); Adjust the chat to a specific category, for this purposes it's not neccesary.
+        const ticketRole = message.guild.roles.cache.get(config.ticket_role_id)
+
         channel.updateOverwrite(message.guild.id, {
           SEND_MESSAGE: false,
           VIEW_CHANNEL: false
@@ -30,8 +31,11 @@ module.exports = {
           VIEW_CHANNEL: true,
           MENTION_EVERYONE: true
         });
-
-        const ticketRole = message.guild.roles.cache.get(config.ticket_role_id)
+        channel.updateOverwrite(ticketRole, {
+          SEND_MESSAGE: true,
+          VIEW_CHANNEL: true,
+          MANAGE_MESSAGES: true
+        })
         
         const reactionMessage = await channel.send(`Dein ${ticketRole} wurde erstellt. Ein Helfer wird dir bald zur Seite stehen! Stay tuned and take care.`);
 
@@ -56,7 +60,7 @@ module.exports = {
               break;
             case "⛔":
               channel.send("Dieser Chat wird in 60 Sekunden gelöscht!");
-              setTimeout(() => channel.delete(), 60000);
+              setTimeout(() => channel.delete(), 3000);
               break;
           }
         });
