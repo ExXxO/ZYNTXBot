@@ -4,7 +4,7 @@ module.exports = async (zyntx) => {
     setInterval(() => {
         const memberCount = guild.memberCount
         const channel = guild.channels.cache.get('835132454238814218')
-        channel.setName(`User Count: ${memberCount.toLocaleString()}`)
+        channel.setName(`👥 Members - ${memberCount.toLocaleString()}`)
 
     }, 10000)
 
