@@ -3,9 +3,10 @@ const cod_api = require('call-of-duty-api')();
  
 module.exports = {
     name: 'wzcheck',
+    aliases: [],
     permissions: ["ADMINISTRATOR"],
     description: 'this command shows stats for call of duty multiplayer',
-    async execute(client, message, args, Discord){
+    async execute(zyntx, message, cmd, args, Discord){
         if(!args[0]) return message.channel.send('Please enter a username');
         if(!args[1]) return message.channel.send('Please enter a platfrom');
  

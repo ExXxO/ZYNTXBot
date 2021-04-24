@@ -6,7 +6,7 @@ module.exports = (Discord, zyntx, message) => {
     const args = message.content.slice(config.prefix.length).split(/ +/);
     const cmd = args.shift().toLowerCase();
 
-    const command = zyntx.commands.get(cmd);
+    const command = zyntx.commands.get(cmd) || zyntx.commands.find(a => a.aliases && a.aliases.includes(cmd));
 
     const validPermissions = [
         "CREATE_INSTANT_INVITE",
@@ -58,5 +58,5 @@ module.exports = (Discord, zyntx, message) => {
       }
 
 
-    if(command) command.execute(zyntx, message, args, Discord);
+    if(command) command.execute(zyntx, message, cmd, args, Discord);
 }
