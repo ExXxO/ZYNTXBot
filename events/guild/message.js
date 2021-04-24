@@ -7,6 +7,10 @@ module.exports = (Discord, zyntx, message) => {
     const cmd = args.shift().toLowerCase();
 
     const command = zyntx.commands.get(cmd) || zyntx.commands.find(a => a.aliases && a.aliases.includes(cmd));
+    
+    if (!command) {
+      return;
+    }
 
     const validPermissions = [
         "CREATE_INSTANT_INVITE",
