@@ -4,15 +4,28 @@ module.exports = {
     permissions: [],
     description: 'open a ticket!',
     async execute(zyntx, message, args, cmd, Discord){
-        const channel = await message.guild.channels.create(`ticket: ${message.author.tag}`);
+        const channel = await message.guild.channels.create(`ticket: ${message.author.tag}`, {
+          permissionOverwrites: [
+            {
+              id: zyntx.user,
+              allow: ['VIEW_CHANNEL', 'MANAGE_CHANNELS', 'ADD_REACTIONS', 'SEND_MESSAGES', 'MANAGE_MESSAGES']
+            }
+          ]
+        });
+        
+        //channel.setParent("835467926006005781");
         
         channel.updateOverwrite(message.guild.id, {
-            SEND_MESSAGE: false,
-            VIEW_CHANNEL: false
+          SEND_MESSAGE: false,
+          VIEW_CHANNEL: false
         });
         channel.updateOverwrite(message.author, {
-            SEND_MESSAGE: true,
-            VIEW_CHANNEL: true
+          SEND_MESSAGE: true,
+          VIEW_CHANNEL: true
+        });
+        channel.updateOverwrite(zyntx.user, {
+          SEND_MESSAGE: true,
+          VIEW_CHANNEL: true
         });
 
         const reactionMessage = await channel.send('Danke für die Kontaktaufnahme!');
