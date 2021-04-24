@@ -1,5 +1,6 @@
 module.exports = {
     name: 'clear',
+    permissions: ["ADMINISTRATOR", "MANAGE_MESSAGES"],
     description: 'Clear messages!',
     async execute(zyntx, message, args) {
         if(!args[0]) return message.reply('Please enter the amount of messages that you want to clear!');
