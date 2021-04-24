@@ -13,31 +13,30 @@ module.exports = {
  
         try{
             await cod_api.login(username, password);
-            let data = await cod_api.MWwz(args[0], args[1]);
+            let data = await cod_api.MWwzstats(args[0], args[1]);
 
             const embed = new Discord.MessageEmbed()
-            .setColor('#BFCDEB')
+            .setColor('#528A63')
             .setTitle('WZ Multiplayer Stats')
-            .setDescription('Cod stats')
             .addFields(
+                { name: 'User', value: data.username, inline: false},
                 { name: 'Games Played', value: data.lifetime.all.properties.totalGamesPlayed, inline: true},
                 { name: 'Wins', value: data.lifetime.all.properties.wins, inline: true},
                 { name: 'Losses', value: data.lifetime.all.properties.losses, inline: true},
-                { name: 'KD Ratio', value: data.lifetime.all.properties.kdratio, inline: true},
+                { name: 'KD Ratio', value: (parseFloat(data.lifetime.all.properties.kdRatio).toFixed(2)), inline: true},
                 { name: 'Kills', value: data.lifetime.all.properties.kills, inline: true},
                 { name: 'Deaths', value: data.lifetime.all.properties.deaths, inline: true},
-                { name: 'Longest Kill Streak', value: data.lifetime.all.properties.longestKillstreak},
-                {name: 'Total Time Played', value: (parseFloat(data.lifetime.all.properties.timePlayedTotal / 3600).toFixed(2)) + " Hours"}
+                { name: 'Longest Kill Streak', value: data.lifetime.all.properties.bestKillStreak},
+                { name: 'Total Time Played', value: (parseFloat(data.lifetime.all.properties.timePlayedTotal / 3600).toFixed(2)) + " Hours"}
             
-            )
-            .setFooter('WZ stats by ZYNTXBot');
+            );
  
             message.channel.send(embed);
  
-            //console.log(data.lifetime.all.properties);
+            console.log(data.lifetime.all.properties);
  
         }catch(error){
-            message.channel.send('There was an error fetching this player');
+            message.channel.send('There was an error fetching this player, may the profile is not set to public.');
             throw error;
         }
     }
