@@ -5,7 +5,7 @@ module.exports = {
     aliases: [],
     permissions: ["VIEW_CHANNEL"],
     description: 'open a ticket!',
-    async execute(zyntx, message){
+    async execute(zyntx, message, cmd, args){
       if (message.channel.id === config.ticket_create_channel_id) {
         const channel = await message.guild.channels.create(`🎫-${message.author.tag}`, {
           permissionOverwrites: [

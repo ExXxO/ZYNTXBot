@@ -6,7 +6,7 @@ module.exports = {
     aliases: [],
     permissions: ["ADMINISTRATOR"],
     description: 'this command shows stats for call of duty multiplayer',
-    async execute(message, args, Discord){
+    async execute(zyntx, message, cmd, args, Discord){
         if(!args[0]) return message.channel.send('Please enter a username');
         if(!args[1]) return message.channel.send('Please enter a platfrom');
  
