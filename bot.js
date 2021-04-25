@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const zyntx = new Discord.Client();
+const zyntx = new Discord.Client({ partials: ["MESSAGE", "CHANNEL", "REACTION"] });
 const config = require('./config.json');
 
 zyntx.commands = new Discord.Collection();
