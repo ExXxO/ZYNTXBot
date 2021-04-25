@@ -47,19 +47,19 @@ module.exports = (Discord, zyntx, message) => {
     ]
 
     if(command.permissions.length){
-        let invalidPerms = []
-        for(const perm of command.permissions){
-          if(!validPermissions.includes(perm)){
-            return console.log(`Invalid Permissions ${perm}`);
-          }
-          if(!message.member.hasPermission(perm)){
-            invalidPerms.push(perm);
-          }
+      let invalidPerms = []
+      for(const perm of command.permissions){
+        if(!validPermissions.includes(perm)){
+          return console.log(`Invalid Permissions ${perm}`);
         }
-        if (invalidPerms.length){
-          return message.channel.send(`Missing Permissions: \`${invalidPerms}\``);
+        if(!message.member.hasPermission(perm)){
+          invalidPerms.push(perm);
         }
       }
+      if (invalidPerms.length){
+        return message.channel.send(`Missing Permissions: \`${invalidPerms}\``);
+      }
+    }
 
 
     if(command) command.execute(zyntx, message, cmd, args, Discord);

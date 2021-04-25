@@ -1,6 +1,7 @@
 {
   "prefix": "",
   "ticket_role_id": "",
+  "ticket_create_channel_id": "",
   "discord_bot_token": "",
   "discord_server_id": "",
   "discord_twitch_channel": "",

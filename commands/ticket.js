@@ -6,6 +6,7 @@ module.exports = {
     permissions: ["VIEW_CHANNEL"],
     description: 'open a ticket!',
     async execute(zyntx, message, cmd, args, Discord){
+      if (message.channel.id === config.ticket_create_channel_id) {
         const channel = await message.guild.channels.create(`🎫-${message.author.tag}`, {
           permissionOverwrites: [
             {
@@ -17,7 +18,7 @@ module.exports = {
         
         //channel.setParent("1337"); Adjust the chat to a specific category, for this purposes it's not neccesary.
         const ticketRole = message.guild.roles.cache.get(config.ticket_role_id)
-
+  
         channel.updateOverwrite(message.guild.id, {
           SEND_MESSAGE: false,
           VIEW_CHANNEL: false
@@ -38,7 +39,7 @@ module.exports = {
         })
         
         const reactionMessage = await channel.send(`Dein ${ticketRole} wurde erstellt. Ein Helfer wird dir bald zur Seite stehen! Stay tuned and take care.`);
-
+  
         try {
           await reactionMessage.react("🔒");
           await reactionMessage.react("⛔");
@@ -46,12 +47,12 @@ module.exports = {
           channel.send("Error sending emojis!");
           throw err;
         }
-
+  
         const collector = reactionMessage.createReactionCollector(
           (reaction, user) => message.guild.members.cache.find((member) => member.id === user.id).hasPermission("ADMINISTRATOR"),
           { dispose: true }
         );
-
+  
         collector.on("collect", (reaction, user) => {
           switch (reaction.emoji.name) {
             case "🔒":
@@ -64,7 +65,7 @@ module.exports = {
               break;
           }
         });
-
+  
         message.channel
       .send(`Ticket wurde erfolgreich erstellt, wir sind bald für dich da: ${channel}!`)
       .then((msg) => {
@@ -73,6 +74,7 @@ module.exports = {
       })
       .catch((err) => {
         throw err;
-      });
-    },
+      }); 
+    }  
+  },
 };
