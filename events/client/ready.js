@@ -1,4 +1,4 @@
-const memberCounter = require('../../counters/member-counter')
+const memberCounter = require('../../counters/member-counter');
 
 module.exports = (Discord, zyntx) => {
     zyntx.user.setPresence({
@@ -6,9 +6,9 @@ module.exports = (Discord, zyntx) => {
             name: 'Bruno hat nen ganz kleinen 🥒',
             type: 0
         }
-    })
+    });
 
-    memberCounter(zyntx)
+    memberCounter(zyntx);
 
     console.log('[ZYNTX]', 'Bot is ready now.');
 }
